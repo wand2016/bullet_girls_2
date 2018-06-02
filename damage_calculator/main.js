@@ -206,7 +206,7 @@ function ResultElement (target, attack, buff_list) {
             mes_list.push('■ 攻撃');
             mes_list.push('　' + this.attack_);
         }
-        if (this.buffList_.length) {
+        if (this.buffList_.length > 0) {
             mes_list.push('■ 補正');
             var buff_string_list = this.buffList_.map(function (buff) {
                 return '　' + buff.toString();
@@ -297,14 +297,8 @@ function for_attack_list (all_attack_list, two_attack_list, callback) {
         }
     }
 }
-function for_buff_list (all_buff_list, one_buff_list, callback) {
-    one_buff_list.forEach(function (one_buff) {
-        var buff_list = all_buff_list.concat(one_buff);
-        callback(buff_list);
-    });
-}
 
-function solve_helper (target, attack_list, buff_list, hp_pred) {
+function solve_helper (target, attack_list, all_buff_list, one_buff_list, hp_pred) {
     // 選べる攻撃手段は3つ + 近接
     
     // 動的計画法
@@ -323,37 +317,45 @@ function solve_helper (target, attack_list, buff_list, hp_pred) {
     for (var i = 0; i < 100 && hp_to_result_from.length > 0; ++i) {
         var hp_to_result_to = [];
 
-        // 攻撃を選択する
-        attack_list.forEach(function (attack) {
-            // 動的計画法
-            hp_to_result_from.forEach(function (result, hp) {
-                hp = Number(hp);
-                if (hp <= 0) {
-                    return;
-                }
+        // バフを選択する
+        one_buff_list.forEach(function (one_buff) {
+            var buff_list = all_buff_list.concat(one_buff);
 
-                // 攻撃とバフを作用させる
-                var target = result.getTarget();
-                var result_element = new ResultElement(target, attack, buff_list);
-                var target_new = result_element.getTarget();
-                var hp_new = target_new.hp;
+            // 攻撃を選択する
+            attack_list.forEach(function (attack) {
+                // 動的計画法
+                hp_to_result_from.forEach(function (result, hp) {
+                    hp = Number(hp);
+                    if (hp <= 0) {
+                        return;
+                    }
 
-                // 重複解は捨てる
-                if (hp_to_flg[hp_new]) {
-                    return;
-                }
+                    // 攻撃とバフを作用させる
+                    var target = result.getTarget();
+                    var result_element = new ResultElement(target, attack, buff_list);
+                    var target_new = result_element.getTarget();
+                    var hp_new = target_new.hp;
 
-                var result_new = result.pushed(result_element);
-                hp_to_result_to[hp_new] = result_new;
-                // 調査済マーク
-                hp_to_flg[hp_new] = true;
+                    // 重複解は捨てる
+                    if (hp_to_flg[hp_new]) {
+                        return;
+                    }
 
-                // 条件を満足していれば、解に追加
-                if (hp_pred(hp_new)) {
-                    answer_list.push(result_new);
-                }
+                    var result_new = result.pushed(result_element);
+                    hp_to_result_to[hp_new] = result_new;
+                    // 調査済マーク
+                    hp_to_flg[hp_new] = true;
+
+                    // 条件を満足していれば、解に追加
+                    if (hp_pred(hp_new)) {
+                        answer_list.push(result_new);
+                    }
+                });
+
             });
+            
         });
+
         // 更新
         hp_to_result_from = hp_to_result_to;
     }
@@ -369,24 +371,25 @@ function solve (target, all_attack_list, two_attack_list, all_buff_list, one_buf
     var answer_list = [];
     
     for_attack_list(all_attack_list, two_attack_list, function (attack_list) {
-        for_buff_list(all_buff_list, one_buff_list, function (buff_list) {
-            answer_list = answer_list.concat(solve_helper(target, attack_list, buff_list, hp_pred));
-        });
+        answer_list = answer_list.concat(solve_helper(target, attack_list, all_buff_list, one_buff_list, hp_pred));
     });
 
     // 解答を表示
 
     console.log(target.toString());
-    
-    if (answer_list.length === 0) {
+
+    var pattern_num = answer_list.length;
+    if (pattern_num === 0) {
         console.log('解なし');
         return;
     }
+
+    console.log(pattern_num + ' patterns');
     
     answer_list.sort(Result.sortPred);
     answer_list.forEach(function (answer, i) {
         console.log('========================================');
-        console.log('Answer #' + (i + 1) + ' / HP ' + answer.getHP() + ' / ' + answer.getStep() + 'steps');
+        console.log('#' + (i + 1) + ' / HP ' + answer.getHP() + ' / ' + answer.getStep() + 'steps');
         console.log(answer.toString());
     });
 
@@ -408,8 +411,8 @@ var target = new Target('9-3 メイド服モブ', 720, TargetType.HUMAN);
 // ... キャラ固有装備等
 // ----------------------------------------
 var all_attack_list = [
-    // new Attack('シャドウスナイパー',   new AttackTuple(270, 270, 135), AttackType.SNIPER),
-    new Attack('シャドウスナイパー改', new AttackTuple(390, 390, 195), AttackType.SNIPER),    
+    new Attack('シャドウスナイパー',   new AttackTuple(270, 270, 135), AttackType.SNIPER),
+    // new Attack('シャドウスナイパー改', new AttackTuple(390, 390, 195), AttackType.SNIPER),    
 ];
 
 // ----------------------------------------
