@@ -21,18 +21,21 @@ Object.freeze(TargetType);
 
 
 // ========================================
-// 対象
+// 標的
 // ========================================
 function Target (name, hp, type) {
     this.name = name;
-    this.hp = hp;    
+    this.hp   = hp;    
     this.type = type;
 }
 
 (function (TargetFtbl) {
     TargetFtbl.toString = function () {
-        var str = this.name + '(' + this.type + ')' + ' : 残HP ' + this.hp;
-        return str;
+        var mes_list = [];
+        mes_list.push(this.name);
+        mes_list.push('標的タイプ: ' + this.type);
+        mes_list.push('HP: ' + this.hp);
+        return mes_list.join('\n');
     };
 
     TargetFtbl.doneAttack = function (attack, buff_list) {
@@ -85,9 +88,9 @@ function AttackTuple (human, cloth, thing) {
 // 攻撃
 // ========================================
 function Attack (name, attack_tuple, type) {
-    this.name = name;
+    this.name         = name;
     this.attackTuple_ = attack_tuple;
-    this.type = type;
+    this.type         = type;
 }
 
 (function (AttackFtbl) {
@@ -113,7 +116,7 @@ function Attack (name, attack_tuple, type) {
 // 特攻/軽減基底
 // ========================================
 function BuffBase (name, value) {
-    this.name = name;
+    this.name  = name;
     this.value = value;
 }
 
@@ -196,20 +199,27 @@ function ResultElement (target, attack, buff_list) {
 
 (function (ResultElementFtbl) {
     ResultElementFtbl.toString = function () {
-        // * stub *
         var str = '';
         
         var mes_list = [];
         if (this.attack_) {
-            mes_list.push(this.attack_);
+            mes_list.push('■ 攻撃');
+            mes_list.push('　' + this.attack_);
         }
         if (this.buffList_.length) {
-            mes_list = mes_list.concat(this.buffList_);
+            mes_list.push('■ 補正');
+            var buff_string_list = this.buffList_.map(function (buff) {
+                return '　' + buff.toString();
+            });
+            mes_list = mes_list.concat(buff_string_list);
         }
         if (this.damage_) {
-            mes_list.push('ダメージ: ' + this.damage_);
+            mes_list.push('■ ダメージ');                        
+            mes_list.push('　' + this.damage_);
         }
-        mes_list.push(this.target_);
+
+        mes_list.push('■ 残HP');
+        mes_list.push('　' + this.target_.hp);
         
         str += mes_list.join('\n');
 
@@ -365,6 +375,9 @@ function solve (target, all_attack_list, two_attack_list, all_buff_list, one_buf
     });
 
     // 解答を表示
+
+    console.log(target.toString());
+    
     if (answer_list.length === 0) {
         console.log('解なし');
         return;
@@ -382,24 +395,44 @@ function solve (target, all_attack_list, two_attack_list, all_buff_list, one_buf
 
 // ========================================
 // entry point
+// まだてきとう
 // ========================================
+
+// ----------------------------------------
+// 調査対象の標的
+// ----------------------------------------
 var target = new Target('9-3 メイド服モブ', 720, TargetType.HUMAN);
 
+// ----------------------------------------
+// 必ず入れる攻撃手段
+// ... キャラ固有装備等
+// ----------------------------------------
 var all_attack_list = [
-    new Attack('シャドウスナイパー',   new AttackTuple(270, 270, 135), AttackType.SNIPER),
+    // new Attack('シャドウスナイパー',   new AttackTuple(270, 270, 135), AttackType.SNIPER),
     new Attack('シャドウスナイパー改', new AttackTuple(390, 390, 195), AttackType.SNIPER),    
 ];
 
+// ----------------------------------------
+// 選択する攻撃手段
+// ... 固有装備以外の、残りの装備枠2枠
+// ----------------------------------------
 var two_attack_list = [
     new Attack('XN8-R lv1', new AttackTuple(48, 48, 12), AttackType.ASSAULT_RIFLE),
     new Attack('XN8-R lv2', new AttackTuple(72, 72, 18), AttackType.ASSAULT_RIFLE),
 ];
 
-
-// 全部適用するバフ
+// ----------------------------------------
+// 必ず適用するバフ
+// 例えば、サポーターが早乙女陽希に決定している場合の
+// 「バズーカ対物特攻+35%」等
+// ----------------------------------------
 var all_buff_list = [];
 
+// ----------------------------------------
 // どれかひとつ適用するバフ
+// 攻撃部位による補正等
+// あるいは、サポーター能力を決めかねている場合など
+// ----------------------------------------
 var buff_head = new PartBuff('頭部', 100);
 var buff_leg  = new PartBuff('脚部', -25);
 var one_buff_list = [
@@ -407,6 +440,11 @@ var one_buff_list = [
     buff_leg,    
 ];
 
-solve(target, all_attack_list, two_attack_list, all_buff_list, one_buff_list, function (hp) {
+// ----------------------------------------
+// 解の条件
+// ----------------------------------------
+var hp_pred = function (hp) {
     return -10 <= hp && hp <= 0;
-});
+};
+
+solve(target, all_attack_list, two_attack_list, all_buff_list, one_buff_list, hp_pred);
