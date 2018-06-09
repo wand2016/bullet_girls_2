@@ -288,11 +288,10 @@ STUB
 
 地図持ちの敵の配置は4通り。
 
-![A](images/ng_misakimori_8-1_a.png)
-![B](images/ng_misakimori_8-1_b.png)
-![C](images/ng_misakimori_8-1_c.png)
-![D](images/ng_misakimori_8-1_d.png)
-
+![A](images/ng_misakimori_8-1_a.png =x160)
+![B](images/ng_misakimori_8-1_b.png =x160)
+![C](images/ng_misakimori_8-1_c.png =x160)
+![D](images/ng_misakimori_8-1_d.png =x160)
 
 2人組のうち、基本的に左の敵が地図を落とす。
 
