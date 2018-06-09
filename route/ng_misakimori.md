@@ -269,3 +269,31 @@ STUB
 * 開始後は START ↑ 〇
 
 アイキャッチを〇で閉じた瞬間にラップ
+
+
+
+## STUB
+
+## 8-1
+
+### 出撃
+
+* 月夜　... 有能スナイパー
+* れみれみ　... 強制
+
+〇↓〇連打、↓〇↑〇、↑〇
+
+
+### 内容
+
+地図持ちの敵の配置は4通り。
+
+![A](images/ng_misakimori_8-1_a.png)
+![B](images/ng_misakimori_8-1_b.png)
+![C](images/ng_misakimori_8-1_c.png)
+![D](images/ng_misakimori_8-1_d.png)
+
+
+2人組のうち、基本的に左の敵が地図を落とす。
+
+爆弾の配置はおそらくランダム。
