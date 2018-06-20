@@ -1,3 +1,19 @@
+<style>
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6 {
+    color: #eaa418;
+}
+
+article {
+    color: white;
+    background: url('./images/cnt_bg.png') repeat center top;
+}
+</style>
+
 # Bullet Girls 2 New Game 岬守学園 RTA
 
 ## タイマー
@@ -651,8 +667,8 @@ TODO スクショ掲載
 
 1. 木箱をバズーカで破壊する。(2発)
 1. 上段～下段の敵部隊を殲滅する。
-1. <div>木箱付近に出現した部隊を殲滅する。<br />
-上段のバズーカ部隊(*)、対岸のスナイパー部隊は無視してよい。</div>
+1. 木箱付近に出現した部隊を殲滅する。
+上段のバズーカ部隊(*)、対岸のスナイパー部隊は無視してよい。
 1. 輸送機をバズーカで撃墜する。(プロペラ一撃)
 1. 高確率で味方モブが1人はぐれ、(*)で無視したバズーカ部隊と交戦を始めるため、バズーカで謀殺する。
 1. 残りの味方モブが味方装甲車に到達したら、ミッションクリア
