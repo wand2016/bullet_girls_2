@@ -559,7 +559,7 @@ STUB
 
 ### 内容
 
-![route](/images/ng_misakimori_4-3.png)
+![route](images/ng_misakimori_4-3.png)
 
 全体をS字を描いて下から巡る。
 
@@ -572,8 +572,8 @@ STUB
 
 #### 開幕右手の建物の屋上にモブが居るパターン
 
-![roof_pattern_1](/images/ng_misakimori_4-3_roof_1.png)
-![roof_pattern_2](/images/ng_misakimori_4-3_roof_2.png)
+![roof_pattern_1](images/ng_misakimori_4-3_roof_1.png)
+![roof_pattern_2](images/ng_misakimori_4-3_roof_2.png)
 
 レーダー破壊前に小部屋のモブを処理しておく。
 
