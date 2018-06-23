@@ -234,8 +234,7 @@ L1連打 (購買部へ)
 
 ### 内容
 
-STUB
-(地図掲載予定)
+![route](images/ng_misakimori_2-2.png)
 
 道なりに進み、赤箱を回収する
 
@@ -250,11 +249,12 @@ STUB
 
 
 ### 内容
-STUB
-(地図掲載予定)
 
-ヘッドショット
+![route](images/ng_misakimori_2-3.png)
 
+ヘッドショット殲滅ゲー
+
+リロードは1回で
 
 ## 2-高度任務
 
@@ -594,7 +594,8 @@ STUB
 
 ##### 立体迷路
 
-TODO スクショ掲載
+![glitch](images/ng_misakimori_4-4_glitch_1.png)
+![glitch](images/ng_misakimori_4-4_glitch_2.png)
 
 * 校章付近のバリケード
 * 返り道のバリケード
@@ -877,9 +878,9 @@ STUB
 <div>
 
 * ↓〇 (武器選択)
-* stub (バズーカ選択)
-* stub (XN8-R Lv2 を選択・購入・入荷メッセージclose)
-* 〇↑〇〇 (XN8-R Lv3 を選択・購入・入荷メッセージclose)
+* ↓x3 〇 (アサルトライフル系選択)
+* ↓〇↑〇〇 (XN8-R Lv2 を選択・購入・入荷メッセージclose)
+* 〇↑〇 (XN8-R Lv3 を選択・購入)
 * ××　(購買部トップに戻る)
 
 **購入操作は受付が遅いのでゆっくりめに**
