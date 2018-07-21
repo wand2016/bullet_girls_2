@@ -1579,22 +1579,35 @@ XN8-R Lv3でヘッドショット
 
 最後のスニーキングミッション
 
-TODO: 地図掲載
+#### マップ
 
-1. 開幕左折
-1. 壁を縫うように移動
-1. 大部屋へ侵入、右側へ
-1. モブにヘッドショット
-1. 廃墟へ
-1. 最寄りのモブにヘッドショット
-1. 発電機をバズーカx2で破壊(900 x 2 = 1800)
-1. パンツ付近のモブにヘッドショット
-1. パンツ回収
-1. 来た道を帰る
+![map](images/ng_misakimori_9-2_map.png)
+
+×印のついた敵は暗殺対象
+
+#### 暗殺1
+
+![kill1](images/ng_misakimori_9-2_kill1.png)
+
+
+#### 暗殺2
+
+![kill2](images/ng_misakimori_9-2_kill2.png)
+![kill2_another](images/ng_misakimori_9-2_kill2_2.png)
+
+この後、発電機をバズーカx2で破壊(900 x 2 = 1800)
+
+
+#### 暗殺3
+
+![kill3](images/ng_misakimori_9-2_kill3.png)
+![kill3_another](images/ng_misakimori_9-2_kill3_2.png)
+
 
 ### 検討事項
 
-開幕で稀にショットガンモブに発見されてしまう。条件は？
+開幕で稀にショットガンモブに発見されてしまう。条件不明
+
 
 ## 9-C
 
