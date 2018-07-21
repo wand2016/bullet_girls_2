@@ -1593,6 +1593,7 @@ XN8-R Lv3でヘッドショット
 #### 暗殺2
 
 ![kill2](images/ng_misakimori_9-2_kill2.png)
+
 ![kill2_another](images/ng_misakimori_9-2_kill2_2.png)
 
 この後、発電機をバズーカx2で破壊(900 x 2 = 1800)
@@ -1601,6 +1602,7 @@ XN8-R Lv3でヘッドショット
 #### 暗殺3
 
 ![kill3](images/ng_misakimori_9-2_kill3.png)
+
 ![kill3_another](images/ng_misakimori_9-2_kill3_2.png)
 
 
